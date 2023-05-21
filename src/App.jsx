@@ -6,10 +6,11 @@ import "./components/User_info/User_info.css";
 import "./index.css"
 
 
-
 function App() {
 
   const [imageUrl,setImageUrl] = useState("")
+  const [isValid,setIsValid] = useState(true)
+
 
   const returnClarifaiRequestOptions= (ImageUrl) => {
     const PAT = '5a0846aa2cd647ad86b571c464cb3c13';
@@ -48,11 +49,27 @@ function App() {
 
     return requestOptions
   } 
-    const handleSubmit= (e) =>{
-      e.preventDefault()
-      console.log(imageUrl)
+
+
+    const checkIsValid = async() => {
+      try{
+        const response = await fetch(imageUrl)
+        if (!imageUrl.length || !response.ok) throw Error("invalid Url")
+        console.log(response)
+        setIsValid(true)
+      } catch(err){
+        console.log(err)
+      }
+      
 
     }
+    const handleSubmit = async (e) =>{
+      e.preventDefault()
+       console.log("submited")
+       checkIsValid()
+    }
+    
+
   
 
     // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
@@ -69,11 +86,10 @@ function App() {
       <NavBar />
       <User_info />
       <Image_link 
-          // ImageUrl = {ImageUrl}
-          // setImageUrl = {setImageUrl}
           onUrlChange={(e) => setImageUrl(e.target.value)}
           handleSubmit={handleSubmit}
           imageUrl={imageUrl}
+          isValid={isValid}
            />
       
       

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Image_link = ({onUrlChange, handleSubmit, imageUrl}) => {
+const Image_link = ({onUrlChange, handleSubmit, imageUrl, isValid}) => {
   return (
     <div>
       <form className='image_form' onSubmit={handleSubmit}>
@@ -17,7 +17,7 @@ const Image_link = ({onUrlChange, handleSubmit, imageUrl}) => {
           <button type='submit'>Detect</button>
       </form>
       <section>
-          <img src={imageUrl}></img>
+        {imageUrl}
       </section>
     </div>  
   
@@ -25,3 +25,20 @@ const Image_link = ({onUrlChange, handleSubmit, imageUrl}) => {
 }
 
 export default Image_link
+
+// {route === 'home'
+// ?  <div>
+//     <Logo />
+//     <Rank />
+//     <ImageLinkForm 
+//       onInputChange={this.onInputChange}
+//       onButtonSubmit={this.onButtonSubmit}
+//     />
+//     <FaceRecognition box={box} imageUrl={imageUrl} />
+//   </div>
+// : (
+//   route === 'signin' 
+//   ? <Signin onRouteChange={this.onRouteChange}/> 
+//   : <Register onRouteChange={this.onRouteChange}/> 
+// )
+// }
