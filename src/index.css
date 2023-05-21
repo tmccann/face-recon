@@ -1,0 +1,68 @@
+/* a minimalist set of CSS resets */
+
+/* default to border-box */
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    margin:0px;
+  }
+  
+  
+  /* adjust typography defaults */
+  body {
+    margin: 0px;
+    font-family: sans-serif;
+    line-height: 1.5;
+  }
+  
+  html, body{
+      height: 100%;
+  }
+  /* images and videos max out at full width */
+  img,
+  video {
+    height: auto;
+    max-width: 100%;
+  }
+
+
+.navBar {
+    padding: 0 1rem;
+    display:flex;
+    font-weight: 600;
+    background-color: black;
+    color: azure;
+    text-decoration: none;
+}
+.logo{
+    align-self: flex-start;
+    margin-right: auto;
+}
+
+a {
+
+    text-decoration: none;
+    color: azure
+}
+
+li{
+    align-items: flex-end;
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+}
+
+.url_input, button {
+    font-size: 1.5rem;
+    margin: 2rem 0rem;  
+}
+
+.image_form label {
+    position: absolute;
+    left: -99999px;
+  }
+
