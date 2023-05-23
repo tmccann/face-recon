@@ -12,9 +12,9 @@ import React from 'react'
 
 const Face_recon = () => {
   return (
-    <div>
-      
-    </div>
+    <section>
+      <img src='https://s23209.pcdn.co/wp-content/uploads/2022/07/220602_DD_The-Best-Ever-Cheeseburger_267-760x1140.jpg' />
+    </section>
   )
 }
 

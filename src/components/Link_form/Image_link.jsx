@@ -2,8 +2,7 @@ import React from 'react'
 
 const Image_link = ({onUrlChange, handleSubmit, imageUrl, isValid}) => {
   return (
-    <div>
-      <form className='image_form' onSubmit={handleSubmit}>
+      <form className='image_form'>
           <label htmlFor='add_image_url'>add Image url here</label>
           <input
                 type="text" 
@@ -14,31 +13,11 @@ const Image_link = ({onUrlChange, handleSubmit, imageUrl, isValid}) => {
                 
           />
 
-          <button type='submit'>Detect</button>
+          <button type='text' onClick={handleSubmit}>Detect</button>
       </form>
-      <section>
-        {imageUrl}
-      </section>
-    </div>  
   
   )
 }
 
 export default Image_link
 
-// {route === 'home'
-// ?  <div>
-//     <Logo />
-//     <Rank />
-//     <ImageLinkForm 
-//       onInputChange={this.onInputChange}
-//       onButtonSubmit={this.onButtonSubmit}
-//     />
-//     <FaceRecognition box={box} imageUrl={imageUrl} />
-//   </div>
-// : (
-//   route === 'signin' 
-//   ? <Signin onRouteChange={this.onRouteChange}/> 
-//   : <Register onRouteChange={this.onRouteChange}/> 
-// )
-// }
