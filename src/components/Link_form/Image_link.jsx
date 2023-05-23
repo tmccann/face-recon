@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Image_link = ({onUrlChange, handleSubmit, imageUrl, isValid}) => {
+const Image_link = ({onUrlChange, handleSubmit}) => {
   return (
       <form className='image_form'>
           <label htmlFor='add_image_url'>add Image url here</label>

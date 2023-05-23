@@ -9,7 +9,7 @@ import Face_recon from "./components/Face_recon/Face_recon";
 
 function App() {
 
-  const [imageUrl,setImageUrl] = useState("")
+  const [imageUrl,setImageUrl] = useState('')
   const [isValid,setIsValid] = useState()
 
 
@@ -35,7 +35,7 @@ function App() {
     // Change these to whatever model and image URL you want to use
     const MODEL_ID = 'food-item-recognition';
     const MODEL_VERSION_ID = '1d5fd481e0cf4826aa72ec3ff049e044';    
-    const IMAGE_URL = 'https://s23209.pcdn.co/wp-content/uploads/2022/07/220602_DD_The-Best-Ever-Cheeseburger_267-760x1140.jpg';
+    const IMAGE_URL = imageUrl;
 
     ///////////////////////////////////////////////////////////////////////////////////
     // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
@@ -92,7 +92,9 @@ function App() {
           handleSubmit={handleSubmit}
           imageUrl={imageUrl}
           />
-      <Face_recon />
+      <Face_recon 
+          imageUrl={imageUrl}
+      />
       
       
     </main>

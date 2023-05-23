@@ -10,10 +10,10 @@ import React from 'react'
   
 
 
-const Face_recon = () => {
+const Face_recon = ({imageUrl}) => {
   return (
     <section>
-      <img src='https://s23209.pcdn.co/wp-content/uploads/2022/07/220602_DD_The-Best-Ever-Cheeseburger_267-760x1140.jpg' />
+      <img src={imageUrl} />
     </section>
   )
 }
