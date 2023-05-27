@@ -3,7 +3,7 @@ import React from 'react'
 const Image_link = ({onUrlChange, handleSubmit}) => {
   return (
       <form className='image_form'>
-          <label htmlFor='add_image_url'>add Image url here</label>
+          <label htmlFor='url_input'>add Image url here</label>
           <input
                 type="text" 
                 id="url_input"

@@ -1,22 +1,16 @@
-import React from 'react'
+  import React from 'react'
+  import './face_recon.css'
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    // In this section, we set the user authentication, user and app ID, model details, and the URL
-    // of the image we want as an input. Change these strings to run your own example.
-    //////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+  const Face_recon = ({imageUrl, box}) => {
+    return (
+      <section className='image_container'>
+        <img id='displayedImage' src={imageUrl} />
+        <div box={box} className='boundingbox' style={{top: box.topRow,
+           right: box.rightCol, bottom: box.bottomRow, left: box.leftCol}}></div>
+      </section>
+    )
+  }
 
-    // Your PAT (Personal Access Token) can be found in the portal under Authentification
-
-  
-
-
-const Face_recon = ({imageUrl}) => {
-  return (
-    <section>
-      <img src={imageUrl} />
-    </section>
-  )
-}
-
-export default Face_recon
+  export default Face_recon
 

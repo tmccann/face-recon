@@ -10,37 +10,18 @@ import Face_recon from "./components/Face_recon/Face_recon";
 function App() {
 
   const [imageUrl,setImageUrl] = useState('')
-  const [isValid,setIsValid] = useState()
+  const [box,setBox] = useState({})
+
+
 
 
   const returnClarifaiRequestOptions= () => {
     const PAT = '9e85fc14c9154e0c80466f5afd20aef6';
-    // Specify the correct user_id/app_id pairings
-    // Since you're making inferences outside your app's scope
-    const USER_ID = 'tommy001';       
-    // Change these to whatever model and image URL you want to use
-    // const MODEL_ID = 'face_detection';   
-
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
-    // In this section, we set the user authentication, user and app ID, model details, and the URL
-    // of the image we want as an input. Change these strings to run your own example.
-    //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    // Your PAT (Personal Access Token) can be found in the portal under Authentification
-    
-    // Specify the correct user_id/app_id pairings
-    // Since you're making inferences outside your app's scope       
+    const USER_ID = 'tommy001';         
     const APP_ID = 'my_first_app';
-    // Change these to whatever model and image URL you want to use
-    const MODEL_ID = 'food-item-recognition';
-    const MODEL_VERSION_ID = '1d5fd481e0cf4826aa72ec3ff049e044';    
+    const MODEL_ID = 'face-detection';
+    const MODEL_VERSION_ID = '6dc7e46bc9124c5c8824be4822abe105';    
     const IMAGE_URL = imageUrl;
-
-    ///////////////////////////////////////////////////////////////////////////////////
-    // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
-    ///////////////////////////////////////////////////////////////////////////////////
-
     const raw = JSON.stringify({
         "user_app_id": {
             "user_id": USER_ID,
@@ -66,17 +47,30 @@ function App() {
         body: raw
     };
 
-    // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
-    // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
-    // this will default to the latest version_id
-
     fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
+        .then(response => response.json())
+        .then(res =>{
+          displayFaceBox(calculateFaceLocation(res))
+        })
+
         .catch(error => console.log('error', error));
   }
 
-  
+    const calculateFaceLocation = (data) => {
+    const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+    const image = document.getElementById('displayedImage');
+    const width = Number(image.width);
+    const height = Number(image.height);
+    return {
+      leftCol: clarifaiFace.left_col * width,
+      topRow: clarifaiFace.top_row * height,
+      rightCol: width - (clarifaiFace.right_col * width),
+      bottomRow: height - (clarifaiFace.bottom_row * height)
+    }
+  }
+    const displayFaceBox = (box) => {
+    setBox(box)
+  }
 
   const handleSubmit = (e) =>{
     e.preventDefault()
@@ -84,6 +78,7 @@ function App() {
   }
 
   return (
+
     <main>
       <NavBar />
       <User_info />
@@ -93,7 +88,8 @@ function App() {
           imageUrl={imageUrl}
           />
       <Face_recon 
-          imageUrl={imageUrl}
+        imageUrl={imageUrl}
+        box={box}
       />
       
       
